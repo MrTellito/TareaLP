@@ -43,7 +43,7 @@ public class CategoriaController {
 	@PostMapping("/Post")
 	  public ResponseEntity<CategoriaEntity> createTutorial(@RequestBody CategoriaEntity p) {
 	    try {
-	    	CategoriaEntity prod = categoriaService.create(new CategoriaEntity(p.getIdcategoria(), p.getCategoria()));
+	    	CategoriaEntity prod = categoriaService.create(new CategoriaEntity(p.getIdcategoria(), p.getCategoria(), p.getLibrosEntity()));
 
 	      return new ResponseEntity<>(prod, HttpStatus.CREATED);
 	    } catch (Exception e) {
@@ -58,7 +58,8 @@ public class CategoriaController {
 	    if (post!=null) {
 	    	post.setIdcategoria(p.getIdcategoria());
 	    	post.setCategoria(p.getCategoria());
-	      return new ResponseEntity<>(categoriaService.create(post), HttpStatus.OK);
+	    	post.setLibrosEntity(p.getLibrosEntity());
+	    	return new ResponseEntity<>(categoriaService.create(post), HttpStatus.OK);
 	    } else {
 	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }

@@ -41,9 +41,9 @@ public class AlquileresController {
 		}
 	}
 	@PostMapping("/Post")
-	  public ResponseEntity<AlquileresEntity> createTutorial(@RequestBody AlquileresEntity p) {
+	  public ResponseEntity<AlquileresEntity> createTutorial(@RequestBody AlquileresEntity a) {
 	    try {
-	    	AlquileresEntity prod = alquilerestService.create(new AlquileresEntity(p.getIdalquileres(), p.getFecha_salida(), p.getFecha_entrada(), null, null));
+	    	AlquileresEntity prod = alquilerestService.create(new AlquileresEntity(a.getIdalquileres(), a.getLectorEntity(), a.getLibroEntity(), a.getFecha_entrada(), a.getFecha_salida()));
 
 	      return new ResponseEntity<>(prod, HttpStatus.CREATED);
 	    } catch (Exception e) {
@@ -52,13 +52,16 @@ public class AlquileresController {
 	  }
 
 	@PutMapping("/post/{id}")
-	  public ResponseEntity<AlquileresEntity> updateTutorial(@PathVariable("id") long idalquileres, @RequestBody AlquileresEntity p) {
+	  public ResponseEntity<AlquileresEntity> updateTutorial(@PathVariable("id") long idalquileres, @RequestBody AlquileresEntity a) {
 		AlquileresEntity post = alquilerestService.read(idalquileres);
 
 	    if (post!=null) {
-	    	post.setIdalquileres(p.getIdalquileres());
-	    	post.setFecha_salida(p.getFecha_salida());
-	    	post.setFecha_entrada(p.getFecha_entrada());
+	    	post.setIdalquileres(a.getIdalquileres());
+	    	post.setFecha_salida(a.getFecha_salida());
+	    	post.setFecha_entrada(a.getFecha_entrada());
+	    	post.setLectorEntity(a.getLectorEntity());
+	    	post.setLibroEntity(a.getLibroEntity());
+	    	
 	      return new ResponseEntity<>(alquilerestService.create(post), HttpStatus.OK);
 	    } else {
 	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);

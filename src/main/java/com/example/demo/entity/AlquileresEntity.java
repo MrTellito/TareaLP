@@ -35,17 +35,19 @@ public class AlquileresEntity implements Serializable{
 	private Long idalquileres;
 	
 	@ManyToOne
-  	@JoinColumn(name="DNILector", nullable = false)
-  	private LectoresEntity lector;
+  	@JoinColumn(name="ID_LECTORES", nullable = false)
+  	private LectoresEntity lectorEntity;
   	
   	@ManyToOne
-  	@JoinColumn(name="ASIN", nullable = false)
-  	private LibroEntity libro;
+  	@JoinColumn(name="ID_LIBRO", nullable = false)
+  	private LibroEntity libroEntity;
   
-  	@Column(name = "FECHA SALIDA")
+  	@Column(name = "FECHA_ENTRADA")
+  	private Date fecha_entrada;
+  	
+  	@Column(name = "FECHA_SALIDA")
   	private Date fecha_salida;
   	
-  	@Column(name = "FECHA ENTRADA")
-  	private Date fecha_entrada;
+
   	
 }

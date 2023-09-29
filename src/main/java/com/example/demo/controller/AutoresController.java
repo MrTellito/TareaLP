@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import static com.example.demo.commons.GlobalContants.API_AUTORES;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class AutoresController {
 	@PostMapping("/Post")
 	  public ResponseEntity<AutoresEntity> createTutorial(@RequestBody AutoresEntity p) {
 	    try {
-	    	AutoresEntity prod = autoresService.create(new AutoresEntity(p.getIdautor(), p.getAutor()));
+	    	AutoresEntity prod = autoresService.create(new AutoresEntity(p.getIdautor(), p.getAutor(),p.getLibrosEntity()));
 
 	      return new ResponseEntity<>(prod, HttpStatus.CREATED);
 	    } catch (Exception e) {
@@ -58,6 +59,7 @@ public class AutoresController {
 	    if (post!=null) {
 	    	post.setIdautor(p.getIdautor());
 	    	post.setAutor(p.getAutor());
+	    	post.setLibrosEntity(p.getLibrosEntity());
 	      return new ResponseEntity<>(autoresService.create(post), HttpStatus.OK);
 	    } else {
 	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);

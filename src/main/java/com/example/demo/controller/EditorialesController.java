@@ -43,7 +43,7 @@ public class EditorialesController {
 	@PostMapping("/Post")
 	  public ResponseEntity<EditorialesEntity> createTutorial(@RequestBody EditorialesEntity p) {
 	    try {
-	    	EditorialesEntity prod = editorialesService.create(new EditorialesEntity(p.getIdeditoriales(), p.getEditorial()));
+	    	EditorialesEntity prod = editorialesService.create(new EditorialesEntity(p.getIdeditoriales(), p.getEditorial(), p.getLibrosEntity()));
 
 	      return new ResponseEntity<>(prod, HttpStatus.CREATED);
 	    } catch (Exception e) {
@@ -58,6 +58,7 @@ public class EditorialesController {
 	    if (post!=null) {
 	    	post.setIdeditoriales(p.getIdeditoriales());
 	    	post.setEditorial(p.getEditorial());
+	    	post.setLibrosEntity(p.getLibrosEntity());
 	      return new ResponseEntity<>(editorialesService.create(post), HttpStatus.OK);
 	    } else {
 	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);

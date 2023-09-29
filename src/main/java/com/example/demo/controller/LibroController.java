@@ -43,7 +43,7 @@ public class LibroController {
 	@PostMapping("/Post")
 	  public ResponseEntity<LibroEntity> createTutorial(@RequestBody LibroEntity p) {
 	    try {
-	    	LibroEntity prod = libroService.create(new LibroEntity(p.getASIN(), p.getTitulo(), p.getFecha_lanzamiento(), p.getAutor(), p.getCategoria(), p.getEditorial(), p.getIdioma(), p.getPaginas(), p.getDescripcion(), p.getPortada()));
+	    	LibroEntity prod = libroService.create(new LibroEntity(p.getASIN(), p.getTitulo(), p.getFecha_lanzamiento(), p.getAutorEntity(), p.getCategoriaEntity(), p.getEditorialEntity(), p.getIdioma(), p.getPaginas(), p.getDescripcion(), p.getPortada(), p.getAlquileresEntity()));
 
 	      return new ResponseEntity<>(prod, HttpStatus.CREATED);
 	    } catch (Exception e) {
@@ -59,13 +59,14 @@ public class LibroController {
 	    	post.setASIN(p.getASIN());
 	    	post.setTitulo(p.getTitulo());
 	    	post.setFecha_lanzamiento(p.getFecha_lanzamiento());
-	    	post.setAutor(p.getAutor());
-	    	post.setCategoria(p.getCategoria());
-	    	post.setEditorial(p.getEditorial());
+	    	post.setAutorEntity(p.getAutorEntity());
+	    	post.setCategoriaEntity(p.getCategoriaEntity());
+	    	post.setEditorialEntity(p.getEditorialEntity());
 	    	post.setIdioma(p.getIdioma());
 	    	post.setPaginas(p.getPaginas());
 	    	post.setDescripcion(p.getDescripcion());
 	    	post.setPortada(p.getPortada());
+	    	post.setAlquileresEntity(p.getAlquileresEntity());
 	      return new ResponseEntity<>(libroService.create(post), HttpStatus.OK);
 	    } else {
 	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
